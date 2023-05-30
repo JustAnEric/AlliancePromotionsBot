@@ -18,4 +18,4 @@ class Cog(commands.Cog):
         async def _promote_error(error, interaction:discord.Interaction, user:discord.Member, role:discord.Role):
             return await interaction.response.send_message(f"You are not allowed to promote **{user.name}** because of your **sufficient permissions**.")
         
-        
+        @bot.tree.command(name="fire", description="")
