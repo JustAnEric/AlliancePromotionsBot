@@ -18,4 +18,9 @@ class Cog(commands.Cog):
         async def _promote_error(error, interaction:discord.Interaction, user:discord.Member, role:discord.Role):
             return await interaction.response.send_message(f"You are not allowed to promote **{user.name}** because of your **sufficient permissions**.")
         
-        @bot.tree.command(name="fire", description="")
+        @bot.tree.command(name="fire", description="Fire someone from the staff team. This removes all roles and rights from the user.")
+        async def fire(interaction:discord.Interaction, user:discord.Member):
+            interaction.response.defer(thinking=True)
+            try: await user.edit(roles=[], reason="User was fired/removed completely.")
+            except: return await interaction.response.send_message("Unfortunately, we were unable to fire the user specified. Please make sure the bot role is higher than the user.", ephemeral=True)
+            return await interaction.response.send_message("User was completely fired.", ephemeral=False)
